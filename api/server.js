@@ -6,7 +6,6 @@
 
 // SERVER
     const server = express();
-    // Set Up Server 
     server.use(express.json())
 
 // Homepage Routing
