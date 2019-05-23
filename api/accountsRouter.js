@@ -63,7 +63,7 @@
                 res.status(400).json({ message: "please fit the shape of newAccount"})
             }
         } catch {
-            res.status(500).json({ error: "could not add acount"})
+            res.status(500).json({ error: "could not add account"})
         }
     })
 
