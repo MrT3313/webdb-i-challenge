@@ -15,20 +15,34 @@
             // res.status(200).json({ message: "Routed accountsRouter main GET/ !"})
         // V2
             try {
-                const accounts = await Accounts.find('SELECT * FROM accounts')
+                const accounts = await Accounts.find()
+
+                console.log('INSIDE TRY')
+                console.log(accounts.length)
+
                 res.status(200).json(accounts)
             } catch {
                 res.status(500).json({ error: "could not get all accounts"})
             }
+        // V3
+        // Accounts.find()
+        //     .then( accounts => {
+        //         console.log(accounts)
+        //         res.status(200).json(accounts)
+        //     })
+        //     .catch( err=> res.status(500).json({ error: "could not get all accounts"})  )
     })
 // Find By ID
     router.get("/:id", async (req,res) => {
         console.log("accountsRouter GET/:id ")
         const { id } = req.params
         console.log(id)
+
         try {
             console.log(account)
+            
             const account = await Accounts.findById(id)
+            
             if (account) {
                 console.log(account)
                 res.status(200).json(account)
