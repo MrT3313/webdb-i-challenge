@@ -56,7 +56,9 @@
         console.log(req.body)
 
         try {
-            const newAccount = await Accounts.find(req.body)
+            const newAccount = await Accounts.add(req.body)
+            console.log("NEW ACCOUNT: ",newAccount)
+
             if (newAccount) {
                 res.status(201).json(newAccount)
             } else {
@@ -68,7 +70,36 @@
     })
 
 // - PUT - //
-// - DELETE - //
+    router.put("/:id", async (req,res) => {
+        const { id } = req.params
 
+        try {
+            const editAccount = await Accounts.update(id, req.body)
+            if (editAccount) {
+                res.status(200).json(editAccount)
+            } else {
+                res.status(401).json({error: "could not update account: invalid ID"})
+            }
+        } catch {
+            res.status(500).json({ error: "could not update account"})
+        }
+    })
+
+// - DELETE - //
+    router.delete("/:id", async (req, res) => {
+        const { id } = req.params
+        console.log("accountsRounter DELETE/:id")
+
+        try {
+            const deletedAccount = await Accounts.remove(id)
+            if (deletedAccount) {
+                res.status(204).json(deletedAccount)
+            } else {
+                res.status(400).json({ error: "could not delete individual account. invalid ID"})
+            }
+        } catch {
+            res.status(500).json({ error: "could not delete account"})
+        }
+    })
 // EXPORTS
     module.exports = router
