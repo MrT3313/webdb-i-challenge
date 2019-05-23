@@ -70,6 +70,13 @@
     })
 
 // - PUT - //
+    /* 
+    Shape Accepted
+    {
+        "name": "NEW EDITED PERSON",
+        "budget": 1000
+    }
+    */
     router.put("/:id", async (req,res) => {
         const { id } = req.params
 
