@@ -17,8 +17,7 @@ function find(query={}) {
   .orderBy(sortby, sortdir)
   .limit(limit)
   .offset(offset);
-  
-  console.log('WOOOOOO')
+
 
   return rows;
 }

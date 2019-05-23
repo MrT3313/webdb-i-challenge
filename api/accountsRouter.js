@@ -8,29 +8,18 @@
     const router = express.Router();
 
 // - GET - //
-// ????
     router.get("/", async (req, res) => {
-        // V1
+
             console.log("accountsRouter GET/ ")
-            // res.status(200).json({ message: "Routed accountsRouter main GET/ !"})
-        // V2
             try {
                 const accounts = await Accounts.find()
 
-                console.log('INSIDE TRY')
                 console.log(accounts.length)
 
                 res.status(200).json(accounts)
             } catch {
                 res.status(500).json({ error: "could not get all accounts"})
             }
-        // V3
-        // Accounts.find()
-        //     .then( accounts => {
-        //         console.log(accounts)
-        //         res.status(200).json(accounts)
-        //     })
-        //     .catch( err=> res.status(500).json({ error: "could not get all accounts"})  )
     })
 // Find By ID
     router.get("/:id", async (req,res) => {
@@ -55,7 +44,28 @@
         }
     })
 // - POST - //
+    /* 
+    Shape Accepted
+    {
+        "name": "Reed",
+        "budget": 100
+    }
+    */
+    router.post("/", async (req,res) => {
+        console.log("accountsRouter POST/")
+        console.log(req.body)
 
+        try {
+            const newAccount = await Accounts.find(req.body)
+            if (newAccount) {
+                res.status(201).json(newAccount)
+            } else {
+                res.status(400).json({ message: "please fit the shape of newAccount"})
+            }
+        } catch {
+            res.status(500).json({ error: "could not add acount"})
+        }
+    })
 
 // - PUT - //
 // - DELETE - //
