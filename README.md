@@ -1,3 +1,5 @@
+
+
 # SQL Exercises
 
 ## Topics

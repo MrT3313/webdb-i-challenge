@@ -12,10 +12,12 @@ function find(query={}) {
   let { page = 1, limit = 5, sortby = 'id', sortdir = 'asc' } = query;
   const offset = limit * (page - 1);
 
+  
   let rows = db('accounts')
-    .orderBy(sortby, sortdir)
-    .limit(limit)
-    .offset(offset);
+  .orderBy(sortby, sortdir)
+  .limit(limit)
+  .offset(offset);
+
 
   return rows;
 }
